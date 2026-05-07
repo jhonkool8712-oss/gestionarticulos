@@ -1,8 +1,8 @@
 <?php
-$host = "localhost";
-$usuario = "root";
-$password = "";
-$bd = "gestion_articulos";
+$host = "mysql-jhonatan1.alwaysdata.net";
+$usuario = "jhonatan1";
+$password = "clase123";
+$bd = "jhonatan1_gestionarticulos";
 
 $conn = new mysqli($host, $usuario, $password, $bd);
 
