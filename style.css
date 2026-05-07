@@ -2,11 +2,11 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body{
-    background-image:url('img/fondo.jpg');
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     background-size:cover;
     background-position:center;
     background-attachment:fixed;
@@ -24,28 +24,29 @@ body::before{
     left:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.5);
+    background:rgba(0,0,0,0.3);
     z-index:-1;
 }
 
 .contenedor{
     width:95%;
     max-width:1200px;
-    background:rgba(255,255,255,0.95);
+    background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
     border-radius:20px;
     padding:30px;
-    box-shadow:0 0 20px rgba(0,0,0,0.5);
+    box-shadow:0 20px 40px rgba(0,0,0,0.3);
     animation:aparecer 1s ease;
+    backdrop-filter: blur(10px);
 }
 
 @keyframes aparecer{
     from{
         opacity:0;
-        transform:translateY(-30px);
+        transform:translateY(-30px) scale(0.9);
     }
     to{
         opacity:1;
-        transform:translateY(0);
+        transform:translateY(0) scale(1);
     }
 }
 
@@ -54,6 +55,32 @@ h1{
     color:#1e3c72;
     margin-bottom:25px;
     font-size:40px;
+    animation: colorChange 3s infinite alternate, bounceIn 1s ease;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+@keyframes colorChange {
+    0% { color: #1e3c72; }
+    50% { color: #764ba2; }
+    100% { color: #667eea; }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .formulario{
@@ -68,13 +95,17 @@ h1{
     border-radius:10px;
     border:2px solid #ccc;
     font-size:16px;
-    transition:0.3s;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(5px);
 }
 
 .formulario input:focus{
-    border-color:#1e3c72;
+    border-color:#667eea;
     outline:none;
     transform:scale(1.03);
+    box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+    background: rgba(255,255,255,1);
 }
 
 .btn{
@@ -85,25 +116,55 @@ h1{
     text-decoration:none;
     font-weight:bold;
     cursor:pointer;
-    transition:0.4s;
+    transition: all 0.4s ease;
     display:inline-block;
     text-align:center;
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2s infinite;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
 }
 
 .guardar{
-    background:#28a745;
+    background: linear-gradient(45deg, #28a745, #20c997);
 }
 
 .editar{
-    background:#007bff;
+    background: linear-gradient(45deg, #007bff, #6610f2);
 }
 
 .eliminar{
-    background:#dc3545;
+    background: linear-gradient(45deg, #dc3545, #fd7e14);
 }
 
 .actualizar{
-    background:#ff9800;
+    background: linear-gradient(45deg, #ff9800, #ff5722);
 }
 
 .btn:hover{
@@ -112,35 +173,47 @@ h1{
 }
 
 .guardar:hover{
-    background:#1f8a39;
+    background: linear-gradient(45deg, #1f8a39, #17a2b8);
 }
 
 .editar:hover{
-    background:#0056b3;
+    background: linear-gradient(45deg, #0056b3, #6f42c1);
 }
 
 .eliminar:hover{
-    background:#b52a37;
+    background: linear-gradient(45deg, #b52a37, #e8590c);
 }
 
 .actualizar:hover{
-    background:#d17c00;
+    background: linear-gradient(45deg, #d17c00, #e64a19);
 }
 
 table{
     width:100%;
     border-collapse:collapse;
     margin-top:20px;
+    background: rgba(255,255,255,0.9);
+    border-radius:10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 table th,
 table td{
     padding:12px;
     text-align:left;
-    border-bottom:1px solid #ccc;
+    border-bottom:1px solid rgba(0,0,0,0.1);
+    transition: background 0.3s ease;
 }
 
 table th{
-    background-color: #f2f2f2;
+    background: linear-gradient(45deg, #f2f2f2, #e9ecef);
     font-weight:bold;
+    color: #495057;
+}
+
+table tr:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: scale(1.01);
+    transition: all 0.2s ease;
 }
